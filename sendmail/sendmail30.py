@@ -46,7 +46,7 @@ class Mailer(object):
             attach_name = attach_name.replace('YYYYMMDD', str(self.datenow))
             #attach_name = attach_name.decode("utf-8") #python3.x 没有decode方法
             rarpart = MIMEApplication(open(attach_name, 'rb').read())
-            fname = attach_name.split('\\')[-1]
+            fname = attach_name.split('/')[-1]
             rarpart.add_header('Content-Disposition', 'attachment', filename=fname)
             msg.attach(rarpart)
         
@@ -56,7 +56,10 @@ class Mailer(object):
           s.connect(self.mail_host) #连接到指定的smtp服务器。参数分别表示smpt主机和端口
           s.login(self.mail_user, self.mail_pass) #登录到你邮箱
           s.sendmail(me, self.mail_list, msg.as_string()) #发送内容
+
+          print (self.mail_content + '发送成功!\n')
           s.close()
+
           return True
         except Exception as e:
           print (e)
@@ -64,7 +67,9 @@ class Mailer(object):
 
 def send_batch_mail(datenow):
     for meta_mail in META_MAILS:
+        print(meta_mail['content'] + "发送中...")
         ss = Mailer(meta_mail, datenow)
+
         ss.sendMail()
     
 
