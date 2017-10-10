@@ -9,5 +9,5 @@ def minmax(test,*args):
 def lessthan(x,y):return x<y
 def grtrthan(x,y):return x>y
 
-print minmax(lessthan,4,7,9,22,18)
-print minmax(grtrthan,4,7,9,22,18)
+print (minmax(lessthan,4,7,9,22,18))
+print (minmax(grtrthan,4,7,9,22,18))
