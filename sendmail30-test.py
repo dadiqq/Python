@@ -19,8 +19,8 @@ class Mailer(object):
         self.datenow = datenow
 
         self.mail_host = "smtp.163.com"
-        self.mail_user = "gylimingqi"
-        self.mail_pass = "p@"
+        self.mail_user = "gylimingqi"#输入用户名不需要@163.com 
+        self.mail_pass = "password"#输入密码
         self.mail_postfix = "163.com" 
     
     def check_mconfig(self):
@@ -46,14 +46,14 @@ class Mailer(object):
             attach_name = attach_name.replace('YYYYMMDD', str(self.datenow))
             #attach_name = attach_name.decode("utf-8") #python3.x 没有decode方法
             rarpart = MIMEApplication(open(attach_name, 'rb').read())
-            fname = attach_name.split('/')[-1]
+            fname = attach_name.split('\\')[-1]
             rarpart.add_header('Content-Disposition', 'attachment', filename=fname)
             msg.attach(rarpart)
         
         
         try:
           s = smtplib.SMTP() #创建邮件服务器对象
-          s.connect(self.mail_ho.sendmailt) #连接到指定的smtp服务器。参数分别表示smpt主机和端口
+          s.connect(self.mail_host) #连接到指定的smtp服务器。参数分别表示smpt主机和端口
           s.login(self.mail_user, self.mail_pass) #登录到你邮箱
           s.sendmail(me, self.mail_list, msg.as_string()) #发送内容
 

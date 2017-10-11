@@ -18,10 +18,11 @@ class Mailer(object):
         self.attach_names = maildict.get('attach_names', [])
         self.datenow = datenow
 
-        self.mail_host = "smtp.163.com"
-        self.mail_user = "gylimingqi"
-        self.mail_pass = "p@"
-        self.mail_postfix = "163.com" 
+        self.mail_host = ("email.foundersc.com")
+        self.mail_user = "limq"
+        self.mail_port = 587
+        self.mail_pass = "lmq"
+        self.mail_postfix = "chinans.com.cn" 
     
     def check_mconfig(self):
         if not self.mail_list or not self.mail_subject:
@@ -53,10 +54,11 @@ class Mailer(object):
         
         try:
           s = smtplib.SMTP() #创建邮件服务器对象
-          s.connect(self.mail_ho.sendmailt) #连接到指定的smtp服务器。参数分别表示smpt主机和端口
+          s.connect(self.mail_host,self.mail_port) #连接到指定的smtp服务器。参数分别表示smpt主机和端口
+          s.starttls()
+          s.ehlo()
           s.login(self.mail_user, self.mail_pass) #登录到你邮箱
           s.sendmail(me, self.mail_list, msg.as_string()) #发送内容
-
           print (self.mail_content + '发送成功!\n')
           s.close()
 
