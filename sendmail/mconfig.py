@@ -4,7 +4,6 @@
 META_MAILS = [
 		  {
           'to':[
-                'zhaoqizhen@foundersc.com',
                 'limq@foundersc.com',
                 'gylimingqi@126.com',
                 '78235621@qq.com'
@@ -19,7 +18,6 @@ META_MAILS = [
           'to':[
                 'gylimingqi@126.com',
                 'limq@foundersc.com',
-                'zhaoqizhen@foundersc.com',
                 '78235621@qq.com'
                 ],  #必填
           'attach_names':[
