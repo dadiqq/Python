@@ -9,8 +9,8 @@ from mconfig import META_MAILS
 from email.header import Header
 class MailError(Exception):
     pass
+
 class Mailer(object):
-    print(datetime.datetime.now())
     def __init__(self, maildict, datenow):
         self.mail_list = maildict.get('to', [])
         self.mail_subject = maildict.get('subject', '')
@@ -21,7 +21,7 @@ class Mailer(object):
         self.mail_host = ("email.foundersc.com")
         self.mail_user = "limq"
         self.mail_port = 587
-        self.mail_pass = "l"
+        self.mail_pass = "lmq"
         self.mail_postfix = "chinans.com.cn" 
     
     def check_mconfig(self):
@@ -66,7 +66,7 @@ class Mailer(object):
           s.sendmail(me, self.mail_list, msg.as_string()) #发送内容
           endtime=datetime.datetime.now()
           total=endtime-starttime
-          print ('耗时 ',total,'s ' + self.mail_content + '发送成功!\n')
+          print ('耗时',total,'s ' + self.mail_content + '发送成功!\n')
           s.close()
           zz= '耗时 ' + str(total) + 's '
           z=(self.mail_content + "发送成功!\n\n")
@@ -76,18 +76,15 @@ class Mailer(object):
           return True
         except Exception as e:
           print (e)
-          err=str(e)
-          with open(logfilename,'a') as file_object:
-              file_object.write(err)
+
 def send_batch_mail(datenow):
     for meta_mail in META_MAILS:
         time=datetime.datetime.now()
         time2= time.strftime('%Y%m%d %H:%M:%S')
-        print('开始' + time2 + meta_mail['content'] + "发送中...")
-        s = meta_mail['content'] + '发送中...\n'
+        print('开始 ' + time2 + meta_mail['content'] + "发送中...")
+        s = '开始 ' + time2 + meta_mail['content'] + '发送中...\n'
         with open(logfilename,'a') as file_object:
 
-            file_object.write('开始' + time2)
             file_object.write(s)
         ss = Mailer(meta_mail, datenow)
         ss.sendMail()
@@ -98,7 +95,5 @@ if __name__ == '__main__':
     print ('you input is %s, please input "yes" conginue' % datenow)
     logfilename='sendmail' + datenow + '.log'
     isok = input()
-
     if str(isok).lower() == 'yes':
        send_batch_mail(datenow)
-print(datetime.datetime.now())
