@@ -1,0 +1,40 @@
+数据成员
+实例
+类对象属性对于实例共享
+类属性成员
+类方法成员成员
+位置第一个
+实例对象
+data =value
+def  method(self,...)
+self.member=value
+data2=123
+def __init__
+def 
+if
+类对象
+类属性
+类方法
+
+
+数据属性所有实例共享
+类对象调用传实例
+通过实例调用不需要
+怎样调用超类的构造器
+
+>>> class Super:
+...     def __init__(self,x):
+...             self.name=x
+... 
+>>> class Sub(Super):
+...     def __init__(self,x,y):
+...             Super.__init__(self,x)
+...             self.name2=y
+... 
+>>> I=Sub(1,2)
+>>> I.name
+1
+>>> I.name2
+2
+>>> 
+
